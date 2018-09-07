@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -9,25 +12,31 @@ import java.util.TreeMap;
 
 public class AnaliseFrequencia {
 
-    public static char frequenciaMaiuscula[] = {'A', 'E', 'O', 'S', 'R', 'I', 'N', 'D',
-        'M', 'U', 'T', 'C', 'L', 'P', 'V', 'G',
-        'H', 'Q', 'B', 'F', 'Z', 'J', 'X', 'K',
-        'Y', 'W'};
-
     public static char frequenciaMinuscula[] = {'a', 'e', 'o', 's', 'r', 'i', 'n', 'd',
         'm', 'u', 't', 'c', 'l', 'p', 'v', 'g',
         'h', 'q', 'b', 'f', 'z', 'j', 'x', 'k',
         'y', 'w'};
 
     public static void main(String[] args) {
-
-        String texto = "A a a a a a a a a a a a aa a a a a a a a a a a a a a a a a a a a a a a a a a a a a E e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e O o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s R r r r r r r r r r r r r r r r r r r r r r r r r r r r r r I i i i i i i i i i i i i i i i i i i i i i i i i i i  i i i i i i i i i i i i i";
-        //String texto = "A a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a E e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e O o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s S s s R r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r I i i i i i i i i i i i i i i i i i i i i i i i i i i  i i i i i i i i i i i i i";
-        System.out.println(texto);
-
-        String textoCifrado = "F f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f J j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j j T t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t t X x x X x x X x x X x x X x x X x x X x x X x x X x x X x x X x x X x x X x x X x x X x x X x x W w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w N n n n n n n n n n n n n n n n n n n n n n n n n n n  n n n n n n n n n n n n n";
-        System.out.println(textoCifrado);
-
+            
+        //String textoCifrado = "z z z z z z d d d d d n n n n r r r q q h";
+        String textoCifrado = "n n n n n n r r r r r b b b b f f f e e v";
+        //System.out.println(textoCifrado);
+        
+        /*
+        BufferedReader buff = 
+                new BufferedReader(new InputStreamReader(System.in));
+        
+        String textoCifrado = "";
+        String str = null;
+        try{
+            while ((str = buff.readLine()) != null) {
+                textoCifrado = textoCifrado + str;
+            }
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+*/
         decrypt(textoCifrado);
         
     }
@@ -55,8 +64,11 @@ public class AnaliseFrequencia {
                         
                         int a = Character.getNumericValue(frequenciaMinuscula[j]);
                         int b = Character.getNumericValue(ch);
-                        total = total + (b - a);
-                        divisor++;
+                        
+                        if(a == 10){
+                            total = total + (b-a);
+                            divisor++;
+                        }
                         
                         result += frequenciaMinuscula[j];
                         break;
